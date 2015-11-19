@@ -42,7 +42,7 @@ namespace Concesionario_Vehiculos_clase.Controllers
         {
             db.Vehiculo.Add(model);
             db.SaveChanges();
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(model);
         }
     }
 }
