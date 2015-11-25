@@ -27,5 +27,7 @@ namespace Concesionario_Vehiculos_clase.Models
     
         public virtual DbSet<Tipo> Tipo { get; set; }
         public virtual DbSet<Vehiculo> Vehiculo { get; set; }
+        public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

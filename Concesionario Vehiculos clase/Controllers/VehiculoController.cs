@@ -7,6 +7,7 @@ using Concesionario_Vehiculos_clase.Models;
 
 namespace Concesionario_Vehiculos_clase.Controllers
 {
+    [Authorize]
     public class VehiculoController : Controller
     {
         Concesionario20Entities db= new Concesionario20Entities();
