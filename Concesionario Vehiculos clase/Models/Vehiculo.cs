@@ -18,7 +18,7 @@ namespace Concesionario_Vehiculos_clase.Models
         public string Matricula { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
-        public double Precio { get; set; }
+        public decimal Precio { get; set; }
         public int IdTipo { get; set; }
     
         public virtual Tipo Tipo { get; set; }
