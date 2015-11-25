@@ -10,51 +10,66 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-                <span style="color: gold; font-size: 14px;" >
-<strong > USUARIO:</strong> 
- @if (User.Identity.IsAuthenticated)
-       {
-           var u = User as PrincipalPersonalizado;
-           @u.MiIdentidadPersonal.Login // introducimos nombre login
-       }
- else
- {
-     var u = "Not Login";
-      @u;
- }             
+            <span style="color: gold; font-size: 16px;" >
+                <strong>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        var u = User as PrincipalPersonalizado;
+                        @u.MiIdentidadPersonal.Nombre // introducimos nombre
+                        @u.MiIdentidadPersonal.Apellidos
+
+                    }
+                    
+                    
                    
+                </strong>
+                
+                
+
+
+
+
 </span> 
                 
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li> @Html.ActionLink("Desconectar", "LogOff", "Login")</li>
-                </ul>
-            </div>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li> @Html.ActionLink("Desconectar", "LogOff", "Login")</li>
+            </ul>
         </div>
     </div>
+</div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-       
-        </footer>
-    </div>
+<div class="container body-content">
+    @if (Session["HoraLogin"] != null)
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    @*@if(AppState["HoraLogin"] !=null)*@ // tambien podemos usar el aplication
+    {
+        var d = (DateTime)Session["HoraLogin"];
+        @String.Format("{0:t}", d)
+    }
+
+    @RenderBody()
+    <hr/>
+    <footer>
+
+    </footer>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 
-@RenderSection("JS", false) 
-    @*//con false indicamos que no es obligatorio*@
+@RenderSection("JS", false)
+@*//con false indicamos que no es obligatorio*@
 </body>
 </html>

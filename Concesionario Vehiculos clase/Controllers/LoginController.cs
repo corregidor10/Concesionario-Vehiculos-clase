@@ -10,7 +10,7 @@ using Concesionario_Vehiculos_clase.Utilidades;
 
 namespace Concesionario_Vehiculos_clase.Controllers
 {
-    
+
     public class LoginController : Controller
     {
         // GET: Login
@@ -22,10 +22,13 @@ namespace Concesionario_Vehiculos_clase.Controllers
         [HttpPost]
         public ActionResult Index(Usuario model)
         {
-            
+
             if (Membership.ValidateUser(model.Login, model.Password)) // AQUI LLAMAMOS AL MEMBERSHIP QUE TENEMOS DEFINIDO EN EL WEB CONFIG.
             {
-             FormsAuthentication.RedirectFromLoginPage(model.Login, false); // si lo ponemos en true, mantendría el login en caché
+                //TempData["HoraLogin"] = DateTime.Now; PUEDE COHABITAR CON LA SESION
+                //HttpContext.Application["HoraLogin"] = DateTime.Now;
+                Session["HoraLogin"] = DateTime.Now; // recupero la hora de conexion
+                FormsAuthentication.RedirectFromLoginPage(model.Login, false); // si lo ponemos en true, mantendría el login en caché
                 return null;
             }
 
@@ -34,7 +37,9 @@ namespace Concesionario_Vehiculos_clase.Controllers
 
         public ActionResult LogOff()
         {
-           FormsAuthentication.SignOut();
+            Session.Clear(); // borra los datos de la sesion
+            Session.Abandon(); // abandona la sesion
+            FormsAuthentication.SignOut();
 
             return RedirectToAction("Index");
         }
