@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Concesionario_Vehiculos_clase.Seguridad
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,7 +18,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Tipos de Coche", "Index", "Tipo", new { area = "" }, new { @class = "navbar-brand" })
+
+                <span style="color: gold; font-size: 14px;" >
+<strong > USUARIO:</strong> 
+ @if (User.Identity.IsAuthenticated)
+       {
+           var u = User as PrincipalPersonalizado;
+           @u.MiIdentidadPersonal.Login // introducimos nombre login
+       }
+ else
+ {
+     var u = "Not Login";
+      @u;
+ }             
+                   
+</span> 
+                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
